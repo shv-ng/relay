@@ -53,48 +53,70 @@ Each server responds with "Hello World" on `/` and returns 200 OK on `/health`.
 
 ### Running the Load Balancer
 
-*(Coming in Sprint 2)*
+```bash
+make run
+``` 
 
 ### Load Balancing Algorithms
 
-*(Will be added as implemented)*
-
-- **Round Robin** - Sprint 2
-- **Least Connections** - Sprint 5
-- **Weighted Round Robin** - Sprint 6
-- **Random Selection** - Sprint 7
-- **IP Hash / Sticky Sessions** - Sprint 8
+- [x] **Round Robin** 
+- [ ] **Least Connections** 
+- [ ] **Weighted Round Robin** 
+- [ ] **Random Selection**
+- [ ] **IP Hash / Sticky Sessions** 
 
 ## Benchmarks
 
 Benchmarks performed using [hey](https://github.com/rakyll/hey): `hey -n 10000 -c 100 http://localhost:8000/`
 
 ### Round Robin
-*(Coming in Sprint 4)*
+```bash
+> hey -n 10000 -c 100 http://localhost:8000/
 
-### Least Connections
-*(Coming in Sprint 5)*
+Summary:
+  Total:        0.4345 secs
+  Slowest:      0.0557 secs
+  Fastest:      0.0001 secs
+  Average:      0.0039 secs
+  Requests/sec: 23016.9177
 
-### Weighted Round Robin
-*(Coming in Sprint 6)*
+  Total data:   120000 bytes
+  Size/request: 12 bytes
 
-### Random Selection
-*(Coming in Sprint 7)*
+Response time histogram:
+  0.000 [1]     |
+  0.006 [7695]  |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.011 [1790]  |■■■■■■■■■
+  0.017 [335]   |■■
+  0.022 [77]    |
+  0.028 [6]     |
+  0.033 [25]    |
+  0.039 [52]    |
+  0.045 [15]    |
+  0.050 [3]     |
+  0.056 [1]     |
 
-### IP Hash
-*(Coming in Sprint 8)*
 
-## Project Structure
-```
-.
-├── main.go           # Entry point
-├── server/
-│   └── main.go       # Backend HTTP server (Sprint 0 ✓)
-├── lb/               # Load balancer package (Sprint 2+)
-├── Makefile          # Build commands
-├── go.mod
-└── README.md
-```
+Latency distribution:
+  10% in 0.0004 secs
+  25% in 0.0010 secs
+  50% in 0.0024 secs
+  75% in 0.0053 secs
+  90% in 0.0091 secs
+  95% in 0.0113 secs
+  99% in 0.0239 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:   0.0001 secs, 0.0001 secs, 0.0557 secs
+  DNS-lookup:   0.0002 secs, 0.0000 secs, 0.0387 secs
+  req write:    0.0001 secs, 0.0000 secs, 0.0180 secs
+  resp wait:    0.0028 secs, 0.0001 secs, 0.0179 secs
+  resp read:    0.0007 secs, 0.0000 secs, 0.0135 secs
+
+Status code distribution:
+  [200] 10000 responses
+```  
+
 
 ## Development
 
@@ -113,14 +135,6 @@ make test
 make dev
 ```
 
-## Sprint Progress
-
-- [x] **Sprint 0**: Basic backend server with `/health` and `/` endpoints
-- [ ] **Sprint 1**: Multiple backend instances
-- [ ] **Sprint 2**: Round robin load balancer
-- [ ] **Sprint 3**: Health checking
-- [ ] **Sprint 4**: Benchmarking setup
-- [ ] **Sprint 5+**: Additional algorithms
 
 ## Contributing
 

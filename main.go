@@ -21,6 +21,10 @@ type Backend struct {
 }
 
 func NewBackend(u *url.URL) *Backend {
+	return &Backend{
+		URL:          u,
+		ReverseProxy: *httputil.NewSingleHostReverseProxy(u),
+	}
 }
 
 func (b *Backend) Alive() bool {
