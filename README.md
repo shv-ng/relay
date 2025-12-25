@@ -69,7 +69,9 @@ make run
 
 Benchmarks performed using [hey](https://github.com/rakyll/hey): `hey -n 10000 -c 100 http://localhost:8000/`
 
-### Round Robin
+<details>
+  <summary>Round Robin</summary>
+
 ```bash
 > hey -n 10000 -c 100 http://localhost:8000/
 
@@ -116,7 +118,7 @@ Details (average, fastest, slowest):
 Status code distribution:
   [200] 10000 responses
 ```  
-
+</details>
 
 ## Development
 
