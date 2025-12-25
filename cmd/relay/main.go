@@ -36,9 +36,9 @@ func run() error {
 		cancel()
 	}()
 
-	urls := []string{"http://localhost:8000", "http://localhost:8001"}
+	urls := []string{"http://localhost:8000", "http://localhost:8001", "http://localhost:8002"}
 
-	rr := algo.NewRoundRobin()
+	rr := algo.NewRandom()
 	sp := pool.New(ctx, rr, urls)
 	go sp.HealthCheckStart()
 
