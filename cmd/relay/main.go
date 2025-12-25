@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"flag"
 	"fmt"
 	"io"
 	"log/slog"
@@ -31,7 +32,10 @@ func run() error {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer stop()
 
-	cfg, err := config.New("config.yml")
+	configFile := flag.String("cfg", "config.yml", "path to config file")
+	flag.Parse()
+
+	cfg, err := config.New(*configFile)
 	if err != nil {
 		return err
 	}
