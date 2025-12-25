@@ -3,6 +3,8 @@
 ![Go Version](https://img.shields.io/badge/Go-1.24+-00ADD8?style=flat&logo=go)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
+![Gopher](gopher.png)
+
 A lightweight HTTP load balancer built from scratch in Go with multiple algorithms.
 
 ## Features
@@ -45,9 +47,11 @@ A lightweight HTTP load balancer built from scratch in Go with multiple algorith
 ## Quick Start
 
 ### Prerequisites
+
 - Go 1.24 or higher
 
 ### 1. Clone and Setup
+
 ```bash
 git clone https://github.com/shv-ng/relay
 cd relay
@@ -111,6 +115,7 @@ go run ./cmd/relay/
 ```
 
 ### 5. Test It
+
 ```bash
 # Send requests through load balancer
 curl http://localhost:8080/
