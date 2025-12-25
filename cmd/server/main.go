@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"log/slog"
 	"net/http"
 	"os"
 )
@@ -25,8 +26,9 @@ func run() error {
 
 	// GET / endpoint say hello world
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello World")
+		fmt.Fprintf(w, "Hello World from %s server\n", port)
 	})
 
+	slog.Info("Server starts at", "port", port)
 	return http.ListenAndServe(":"+port, nil)
 }

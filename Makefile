@@ -1,11 +1,6 @@
 run:
-	@go run .
-
-build:
-	@go build -o bin/relay
+	@go run ./cmd/relay/
 
 test:
 	@go test ./...
 
-dev:
-	air 
