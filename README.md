@@ -74,44 +74,44 @@ Benchmarks performed using [hey](https://github.com/rakyll/hey): `hey -n 10000 -
 > hey -n 10000 -c 100 http://localhost:8000/
 
 Summary:
-  Total:        0.4345 secs
-  Slowest:      0.0557 secs
+  Total:        0.5318 secs
+  Slowest:      0.0671 secs
   Fastest:      0.0001 secs
-  Average:      0.0039 secs
-  Requests/sec: 23016.9177
+  Average:      0.0049 secs
+  Requests/sec: 18803.2185
 
-  Total data:   120000 bytes
-  Size/request: 12 bytes
+  Total data:   290000 bytes
+  Size/request: 29 bytes
 
 Response time histogram:
   0.000 [1]     |
-  0.006 [7695]  |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  0.011 [1790]  |■■■■■■■■■
-  0.017 [335]   |■■
-  0.022 [77]    |
-  0.028 [6]     |
-  0.033 [25]    |
-  0.039 [52]    |
-  0.045 [15]    |
-  0.050 [3]     |
-  0.056 [1]     |
+  0.007 [7557]  |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.013 [1753]  |■■■■■■■■■
+  0.020 [441]   |■■
+  0.027 [178]   |■
+  0.034 [31]    |
+  0.040 [6]     |
+  0.047 [14]    |
+  0.054 [3]     |
+  0.060 [9]     |
+  0.067 [7]     |
 
 
 Latency distribution:
-  10% in 0.0004 secs
-  25% in 0.0010 secs
-  50% in 0.0024 secs
-  75% in 0.0053 secs
-  90% in 0.0091 secs
-  95% in 0.0113 secs
-  99% in 0.0239 secs
+  10% in 0.0005 secs
+  25% in 0.0013 secs
+  50% in 0.0029 secs
+  75% in 0.0066 secs
+  90% in 0.0111 secs
+  95% in 0.0157 secs
+  99% in 0.0240 secs
 
 Details (average, fastest, slowest):
-  DNS+dialup:   0.0001 secs, 0.0001 secs, 0.0557 secs
-  DNS-lookup:   0.0002 secs, 0.0000 secs, 0.0387 secs
-  req write:    0.0001 secs, 0.0000 secs, 0.0180 secs
-  resp wait:    0.0028 secs, 0.0001 secs, 0.0179 secs
-  resp read:    0.0007 secs, 0.0000 secs, 0.0135 secs
+  DNS+dialup:   0.0001 secs, 0.0001 secs, 0.0671 secs
+  DNS-lookup:   0.0001 secs, 0.0000 secs, 0.0194 secs
+  req write:    0.0002 secs, 0.0000 secs, 0.0485 secs
+  resp wait:    0.0034 secs, 0.0001 secs, 0.0222 secs
+  resp read:    0.0010 secs, 0.0000 secs, 0.0308 secs
 
 Status code distribution:
   [200] 10000 responses
