@@ -1,6 +1,7 @@
 package algo
 
 import (
+	"context"
 	"sync/atomic"
 
 	"github.com/shv-ng/relay/internal/backend"
@@ -9,8 +10,8 @@ import (
 type roundRobin struct {
 	backends []*backend.Backend
 
-	current atomic.Uint64
-	total   uint64
+	current atomic.Int64
+	total   int64
 }
 
 func NewRoundRobin() Picker {
@@ -19,10 +20,10 @@ func NewRoundRobin() Picker {
 
 func (r *roundRobin) Init(backends []*backend.Backend) {
 	r.backends = backends
-	r.total = uint64(len(backends))
+	r.total = int64(len(backends))
 }
 
-func (r *roundRobin) Next() *backend.Backend {
+func (r *roundRobin) Next(ctx context.Context) *backend.Backend {
 	if r.total == 0 {
 		return nil
 	}

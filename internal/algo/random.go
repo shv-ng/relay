@@ -1,6 +1,7 @@
 package algo
 
 import (
+	"context"
 	"math/rand"
 
 	"github.com/shv-ng/relay/internal/backend"
@@ -21,7 +22,7 @@ func (r *random) Init(backends []*backend.Backend) {
 	r.total = len(backends)
 }
 
-func (r *random) Next() *backend.Backend {
+func (r *random) Next(ctx context.Context) *backend.Backend {
 	if r.total == 0 {
 		return nil
 	}

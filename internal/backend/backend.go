@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
-	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -13,20 +13,28 @@ type Backend struct {
 	URL          *url.URL
 	ReverseProxy httputil.ReverseProxy
 
-	mu    sync.RWMutex
-	alive bool
+	alive atomic.Bool
+
+	Weight          int64
+	EffectiveWeight atomic.Int64
+
+	ActiveConnection atomic.Int64
 }
 
-func New(url *url.URL) *Backend {
+func New(url *url.URL, weight int64) *Backend {
+	if weight <= 0 {
+		weight = 1
+	}
 	return &Backend{
 		URL:          url,
 		ReverseProxy: *httputil.NewSingleHostReverseProxy(url),
+		Weight:       weight,
 	}
 }
 
 // HealthCheck checks and update health of each Backend with each 10sec interval
-func (b *Backend) HealthCheck() {
-	client := http.Client{Timeout: 3 * time.Second}
+func (b *Backend) HealthCheck(timeout time.Duration) {
+	client := http.Client{Timeout: timeout}
 
 	healthUrl := b.URL.JoinPath("/health")
 	res, err := client.Get(healthUrl.String())
@@ -37,6 +45,8 @@ func (b *Backend) HealthCheck() {
 		b.SetAlive(false)
 		return
 	}
+
+	defer res.Body.Close()
 
 	if res.StatusCode == http.StatusOK {
 		slog.Info("Health check passed", "url", b.URL.String())
@@ -50,15 +60,9 @@ func (b *Backend) HealthCheck() {
 }
 
 func (b *Backend) Alive() bool {
-	b.mu.RLock()
-	defer b.mu.RUnlock()
-
-	return b.alive
+	return b.alive.Load()
 }
 
 func (b *Backend) SetAlive(alive bool) {
-	b.mu.Lock()
-	defer b.mu.Unlock()
-
-	b.alive = alive
+	b.alive.Store(alive)
 }

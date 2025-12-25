@@ -1,0 +1,17 @@
+# Load Balancer Settings
+port: 8080
+algorithm: "least-conn" # Options: round-robin, random, weighted-round-robin, least-conn, ip-hash
+log_file: "lb.log"
+
+# Health Check Settings (in sec)
+health_check_interval: 10
+health_check_timeout: 2
+
+# Backend Servers
+backends:
+  - url: "http://localhost:8001"
+    weight: 3
+  - url: "http://localhost:8002"
+    weight: 1
+  - url: "http://localhost:8003"
+    weight: 1
