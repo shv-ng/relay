@@ -29,15 +29,18 @@ A lightweight HTTP load balancer built from scratch in Go with multiple algorith
 - Comprehensive benchmarks included
 
 <details>
-  <summary>Architecture</summary>
-![Architecture diagram](./architecture.png)
+  <summary>
+    Architecture
+  </summary>
+  
+![Architecture diagram](architecture.png)
 
 **Key Components:**
 - **Pool**: Manages backend servers and health checks
 - **Picker**: Strategy interface for load balancing algorithms
 - **Backend**: Individual server with health status and connection tracking
 - **Config**: YAML-based configuration management
-</details> 
+</details>
 
 ## Quick Start
 
@@ -93,6 +96,7 @@ backends:
 
 <details>
     <summary>Available Algorithms:</summary>
+  
 - `round-robin` - Distributes requests evenly across all backends
 - `weighted-round-robin` - Uses weight values for priority distribution
 - `random` - Randomly selects backend with failover to alive servers
@@ -531,7 +535,7 @@ This is a learning project, but contributions are welcome! Feel free to:
 
 ## License
 
-MIT License - see ![LICENSE](LICENSE) file for details
+MIT License - see [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
